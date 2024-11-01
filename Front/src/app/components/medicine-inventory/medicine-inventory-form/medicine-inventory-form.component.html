@@ -1,0 +1,57 @@
+<div class="offcanvas-header">
+    <h4 class="offcanvas-title text-light">{{isEditable ? 'Editar': 'Crear'}} medicamento</h4>
+    <button type="button" class="btn-close" aria-label="Close"
+        (click)="activeOffcanvas.dismiss('Cross click')"></button>
+</div>
+<div class="offcanvas-body">
+    <form [formGroup]="customForm" class="form login" (ngSubmit)="onSave()">
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <input type="text" class="form__input" formControlName="nameMedicine" placeholder="Medicamento">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <input type="text" class="form__input" formControlName="description" placeholder="Descripción">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <input type="text" class="form__input" formControlName="quantityAvailable"
+                        placeholder="Cantidad disponible" (keypress)="helpers.onlyNumbers($event)">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <input type="text" class="form__input" formControlName="cost" placeholder="Costo"
+                        (keypress)="helpers.onlyNumbers($event)">
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas-footer">
+            <button type="submit" class="btn btn-sm btn-primary">
+                <i class="fa-regular fa-floppy-disk"></i>&nbsp;
+                Guardar
+            </button>
+        </div>
+    </form>
+</div>

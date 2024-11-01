@@ -1,0 +1,101 @@
+<div class="offcanvas-header">
+    <h4 class="offcanvas-title text-light">{{isEditable ? 'Editar': 'Crear'}} factura</h4>
+    <button type="button" class="btn-close" aria-label="Close"
+        (click)="activeOffcanvas.dismiss('Cross click')"></button>
+</div>
+<div class="offcanvas-body">
+    <form [formGroup]="customForm" class="form login" (ngSubmit)="onSave()">
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <select class="form__input" formControlName="idPatients" (change)="OnChangePatient($event)">
+                        <option value="">Seleccione el paciente</option>
+                        @for (item of patientList; track $index) {
+                        <option [value]="item.id">{{item.firstName}} {{item.lastName}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <select class="form__input" formControlName="idMedicalRecords" (change)="OnChangeMedicalRecords($event)">
+                        <option value="">Seleccione la historia clínica</option>
+                        @for (item of medicalRecordsList; track $index) {
+                        <option [value]="item.id">{{item.employee.firstName}} {{item.employee.lastName}} -
+                            {{item.dateCreated | date: 'dd-MM-YYYY HH:mm'}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <input type="text" class="form__input" formControlName="details" placeholder="Detalles">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <select class="form__input" formControlName="paymentStatus">
+                        <option value="">Estado de pago</option>
+                        <option value="PAG">Pagado</option>
+                        <option value="PEND">Pendiente</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        @if(totalAmmount > 0){
+        <table class="table table-dark">
+            @if(medicineList.length > 0){
+            <thead>
+                <tr>
+                    <th scope="col">Medicamento</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            }
+            <tbody>
+                @for (item of medicineList; track $index) {
+                <tr>
+                    <td>{{item.medicineInventory.nameMedicine}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>{{(item.amount * item.medicineInventory.cost) | currency:'$':'symbol':'1.0-0'}}</td>
+                </tr>
+                }
+                <tr>
+                    <td colspan="2" class="text-end"><strong>Valor de la cita</strong></td>
+                    <td>{{valueAppointment | currency:'$':'symbol':'1.0-0'}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="text-end"><strong>Total</strong></td>
+                    <td>{{totalAmmount | currency:'$':'symbol':'1.0-0'}}</td>
+                </tr>
+            </tbody>
+        </table>
+        }
+        <div class="offcanvas-footer">
+            <button type="submit" class="btn btn-sm btn-primary">
+                <i class="fa-regular fa-floppy-disk"></i>&nbsp;
+                Guardar
+            </button>
+        </div>
+    </form>
+</div>

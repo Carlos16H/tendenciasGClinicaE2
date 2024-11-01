@@ -74,7 +74,7 @@ export class AppointmentFormComponent implements OnInit {
 
 
   async getEmployees() {
-    this.employeeList = await firstValueFrom(this.employeeService.getList());
+    this.employeeList = await firstValueFrom(this.employeeService.getListProfesionals());
   }
 
   async getPatients() {

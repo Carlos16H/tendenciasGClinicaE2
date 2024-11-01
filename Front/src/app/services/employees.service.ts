@@ -16,6 +16,10 @@ export class EmployeesService {
     return this.http.get<Employees[]>(this.urlApi);
   }
 
+  getListProfesionals() {
+    return this.http.get<Employees[]>(`${this.urlApi}?rol__in=MED,ENF,FIS`);
+  }
+
   create(obj: Employees) {
     return this.http.post<Employees>(this.urlApi, obj);
   }

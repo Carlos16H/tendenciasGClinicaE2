@@ -1,0 +1,57 @@
+<div class="offcanvas-header">
+    <h4 class="offcanvas-title text-light">Información</h4>
+    <button type="button" class="btn-close" aria-label="Close"
+        (click)="activeOffcanvas.dismiss('Cross click')"></button>
+</div>
+<div class="offcanvas-body">
+
+    <div class="row mb-1">
+        <div class="col-12 ps-4 text-light">
+            <label class="me-2 "><strong>ID:</strong></label>{{data.id}}
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col-12 ps-4 text-light">
+            <label class="me-2 "><strong>Paciente:</strong></label>{{data.patient.firstName + ' ' +
+            data.patient.lastName}}
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col-12 ps-4 text-light">
+            <label class="me-2 "><strong>Profesional:</strong></label>{{data.employee.firstName + ' ' +
+            data.employee.lastName}}
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col-12 ps-4 text-light">
+            <label class="me-2 "><strong>Tipo Cita:</strong></label>{{data.typeAppointment.nameAppointment}}
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col-12 ps-4 text-light">
+            <label class="me-2 "><strong>Fecha Cita:</strong></label>{{data.dateCreated | date: 'dd-MM-YYYY HH:mm a'}}
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col-12 ps-4 text-light">
+            <label class="me-2 "><strong>Motivo consulta:</strong></label>{{data.description}}
+        </div>
+    </div>
+    <hr>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Medicamento</th>
+                <th scope="col">Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of medicineList; track $index) {
+                <tr>
+                    <th>{{item.medicineInventory.nameMedicine}}</th>
+                    <td>{{item.amount}}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

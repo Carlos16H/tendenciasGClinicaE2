@@ -1,0 +1,40 @@
+<div class="offcanvas-header">
+    <h4 class="offcanvas-title text-light">Añadir medicamentos</h4>
+    <button type="button" class="btn-close" aria-label="Close"
+        (click)="activeOffcanvas.dismiss('Cross click')"></button>
+</div>
+<div class="offcanvas-body">
+    <form [formGroup]="customForm" class="form login" (ngSubmit)="onSave()">
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <select class="form__input" formControlName="idMedicineInventory">
+                        <option value="">Seleccione el medicamento</option>
+                        @for (item of medicineInventoryList; track $index) {
+                            <option [value]="item.id">{{item.nameMedicine}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <input type="text" class="form__input" formControlName="amount" placeholder="Cantidad" (keypress)="helpers.onlyNumbers($event)">
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas-footer">
+            <button type="submit" class="btn btn-sm btn-primary">
+                <i class="fa-regular fa-floppy-disk"></i>&nbsp;
+                Guardar
+            </button>
+        </div>
+    </form>
+</div>

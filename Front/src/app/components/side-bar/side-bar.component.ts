@@ -44,9 +44,14 @@ export class SideBarComponent implements OnInit {
     
     const arr = await firstValueFrom(this.menuService.getMenu());
     let isAdmin = this.authService.readToken().rol === 'ADM' ? true : false;
+    let isReg = this.authService.readToken().rol === 'REG' ? true : false;
 
     if(!isAdmin){
       const idx = arr.findIndex(x=> x.path === '/empleados');
+      arr.splice(idx, 1);
+    }
+    if(!isReg){
+      const idx = arr.findIndex(x=> x.path === '/inventario-medicamentos');
       arr.splice(idx, 1);
     }
 

@@ -1,0 +1,70 @@
+<div class="offcanvas-header">
+    <h4 class="offcanvas-title text-light">{{isEditable ? 'Editar': 'Crear'}} historia clínica</h4>
+    <button type="button" class="btn-close" aria-label="Close"
+        (click)="activeOffcanvas.dismiss('Cross click')"></button>
+</div>
+<div class="offcanvas-body">
+    <form [formGroup]="customForm" class="form login" (ngSubmit)="onSave()">
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <select class="form__input" formControlName="idPatient">
+                        <option value="">Seleccione el paciente</option>
+                        @for (item of patientList; track $index) {
+                            <option [value]="item.id">{{item.firstName}} {{item.lastName}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <select class="form__input" formControlName="idEmployees">
+                        <option value="">Seleccione el profesional</option>
+                        @for (item of employeeList; track $index) {
+                            <option [value]="item.id">{{item.firstName}} {{item.lastName}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <select class="form__input" formControlName="idTypeAppointment">
+                        <option value="">Seleccione el tipo de cita</option>
+                        @for (item of typeAppointmentList; track $index) {
+                            <option [value]="item.id">{{item.nameAppointment}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <div class="col-12 ps-4 text-light">
+                <div class="form__field">
+                    <label>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </label>
+                    <input type="text" class="form__input" formControlName="description" placeholder="Motivo consulta">
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas-footer">
+            <button type="submit" class="btn btn-sm btn-primary">
+                <i class="fa-regular fa-floppy-disk"></i>&nbsp;
+                Guardar
+            </button>
+        </div>
+    </form>
+</div>

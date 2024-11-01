@@ -16,7 +16,6 @@ import { Helpers } from '../../../libs/helpers';
     CommonModule,
     ReactiveFormsModule,
     BsDatepickerModule,
-    
   ],
   templateUrl: './employees-form.component.html',
   styleUrl: './employees-form.component.scss'

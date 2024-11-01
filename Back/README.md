@@ -54,3 +54,12 @@ Instruciones del front esta en el readme de esa carpeta (https://github.com/manu
 
 Link mas especifico para la base de datos: (https://medium.com/@a01207543/django-conecta-tu-proyecto-con-la-base-de-datos-mysql-2d329c73192a)
 >>>>>>> clinicagrupo2/grupo2
+
+
+URLs del despliegue:
+Front: 
+https://proyecto-clinica-grupo2-frontend.vercel.app/ 
+
+Back:
+https://proyecto-clinica-grupo2.vercel.app/
+

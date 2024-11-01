@@ -1,1 +1,33 @@
-<p>medicine-inventory works!</p>
+<side-bar />
+<div class="container">
+    <div class="header">
+        <h1>Inventario de Medicamentos</h1>
+        <div class="buttons">
+            <button class="btn btn-sm btn-primary" (click)="getPDFAll()"><i class="fa-regular fa-file-pdf"></i>&nbsp;Exportar</button>
+            <button class="btn btn-sm btn-primary" (click)="openModal(false)"><i class="fa-solid fa-user-plus"></i>&nbsp;Nuevo</button>
+        </div>
+    </div>
+
+
+    <ol-datatable [JSONdata]="JSONdata | filter: searcherText" [dataValues]="dataValues" [itemsPerPage]="$any(itemsPerPage)"
+        [totalItems]="(JSONdata | filter: searcherText).length" keyValue="id" paginatePosition="bottom" [filter]="true" (onSearch)="onSearch($event)">
+    </ol-datatable>
+
+    <ng-template #actionsTemplate let-identifier="keyValue" let-data="data">
+        <div class="action-column">
+            <button tooltip="Exportar" container="body" class="btn btn-sm btn-primary" (click)="getPDFById(identifier, data)">
+                <i class="fa-regular fa-file-pdf"></i>
+            </button>
+            <button tooltip="Editar" container="body" class="btn btn-sm btn-primary" (click)="openModal(true, identifier, data)">
+                <i class="far fa-edit"></i>
+            </button>
+            <button tooltip="Ver" container="body" class="btn btn-sm btn-secondary" (click)="viewDetails(data)">
+                <i class="fa-regular fa-eye"></i>
+            </button>
+            <button tooltip="Eliminar" container="body" class="btn btn-sm btn-danger" (click)="onDelete(identifier)">
+                <i class="fa-regular fa-trash-can"></i>
+            </button>
+        </div>
+    </ng-template>
+
+</div>
