@@ -29,7 +29,7 @@ class Patients(models.Model):
     insurance_entity = models.CharField("Insurance", max_length=50)
     policy_number = models.CharField("Insurance Number", max_length=20, default='0000000000')
     Policy_state = models.BooleanField("Valid Policy?", default=False)
-    policy_validity = models.DateField('Insurance Active Until', blank=False, null=False, default='0001-01-01')
+    policy_validity = models.DateField('Insurance Active Until', blank=False, null=False, default='2000-01-01')
     Cedula = models.CharField('ID', max_length=10, default='0000000000')
     
     

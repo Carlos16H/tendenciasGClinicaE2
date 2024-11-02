@@ -74,3 +74,15 @@ class MedicineInventoryTests(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(MedicineInventory.objects.count(), 0)
+
+    def test_export_medicineinventory_to_pdf(self):
+        url = reverse('Inventory-export-medicine-to-pdf', args=[self.medicine.id])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['Content-Type'], 'application/pdf')
+
+    def test_export_all_medicineinventorys_to_pdf(self):
+        url = reverse('Inventory-export-all-medicines-to-pdf')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['Content-Type'], 'application/pdf')

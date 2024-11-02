@@ -101,3 +101,16 @@ class BillingTests(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Billing.objects.count(), 0)
+    
+    def test_export_billing_to_pdf(self):
+        url = reverse('Billing-export-billing-to-pdf', args=[self.billing.id])
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['Content-Type'], 'application/pdf')
+
+    def test_export_all_billings_to_pdf(self):
+        url = reverse('Billing-export-all-billings-to-pdf')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['Content-Type'], 'application/pdf')
+
